@@ -701,117 +701,127 @@
       display: block;
     }
 
-    /* SKILLS */
-    .skills-l {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
+    /* SKILLS — CATEGORY GRID */
+    .skills-intro {
+      max-width: 600px;
+      margin-bottom: 60px;
     }
 
-    .skl-left h3 {
+    .skills-intro h3 {
       font-family: var(--ff-head);
       font-size: 1.5rem;
       font-weight: 600;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       letter-spacing: -.02em;
     }
 
-    .skl-left p {
+    .skills-intro p {
       color: var(--text2);
       font-size: .88rem;
       line-height: 1.8;
-      margin-bottom: 32px;
     }
 
-    .sbars {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    .skill-cats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
     }
 
-    .sbi {}
-
-    .sbh {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
+    @media(max-width:900px) {
+      .skill-cats {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
-    .sbn {
-      font-family: var(--ff-mono);
-      font-size: .75rem;
-      color: var(--text);
+    @media(max-width:580px) {
+      .skill-cats {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .sbp {
-      font-family: var(--ff-mono);
-      font-size: .7rem;
-      color: var(--accent);
-    }
-
-    .sbt {
-      height: 3px;
-      background: var(--border2);
-      border-radius: 100px;
+    .scat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 20px;
+      transition: border-color .3s, box-shadow .3s, transform .3s;
+      position: relative;
       overflow: hidden;
     }
 
-    .sbf {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent2), var(--accent));
-      border-radius: 100px;
-      width: 0%;
-      transition: width 1.4s var(--ease);
-      box-shadow: 0 0 10px rgba(79, 255, 176, .3);
+    .scat::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--cat-color, var(--accent));
+      opacity: .6;
     }
 
-    .skl-right {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+    .scat:hover {
+      border-color: var(--cat-color, var(--accent));
+      box-shadow: 0 8px 40px rgba(0, 0, 0, .4), 0 0 0 1px rgba(79, 255, 176, .06);
+      transform: translateY(-4px);
     }
 
-    .schip {
+    .scat-head {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 14px 18px;
-      background: var(--card);
-      border: 1px solid var(--border);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .scat-ic {
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, .04);
       border-radius: 8px;
-      transition: border-color .3s, transform .3s, box-shadow .3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      border: 1px solid var(--border);
+    }
+
+    .scat-lbl {
+      font-family: var(--ff-mono);
+      font-size: .65rem;
+      color: var(--cat-color, var(--accent));
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .stags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .stag2 {
+      font-family: var(--ff-mono);
+      font-size: .68rem;
+      padding: 5px 11px;
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid var(--border2);
+      color: var(--text2);
+      border-radius: 6px;
+      letter-spacing: .04em;
+      transition: background .2s, color .2s, border-color .2s, transform .2s;
       cursor: none;
     }
 
-    .schip:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 8px 30px rgba(79, 255, 176, .08);
-    }
-
-    .chip-ic {
-      font-size: 1.3rem;
-    }
-
-    .chip-n {
-      font-family: var(--ff-mono);
-      font-size: .75rem;
+    .stag2:hover {
+      background: rgba(255, 255, 255, .07);
       color: var(--text);
-      font-weight: 500;
+      border-color: var(--cat-color, var(--accent));
+      transform: translateY(-2px);
     }
 
-    .chip-t {
-      font-size: .62rem;
-      color: var(--text3);
-      margin-top: 2px;
-    }
-
-    .schip.ft {
-      border-color: rgba(79, 255, 176, .25);
-    }
-
-    .schip.ft .chip-n {
+    .stag2.core {
+      background: rgba(79, 255, 176, .05);
+      border-color: rgba(79, 255, 176, .2);
       color: var(--accent);
     }
 
@@ -845,7 +855,7 @@
 
     .pg {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
     }
 
@@ -1486,6 +1496,361 @@
       transform: translateX(-50%) translateY(0);
     }
 
+    /* ============================
+       AI ASSISTANT WIDGET
+    ============================ */
+    #ai-btn {
+      position: fixed;
+      bottom: 100px;
+      right: 40px;
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      border: none;
+      border-radius: 50%;
+      cursor: none;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 0 30px rgba(79, 255, 176, .3), 0 8px 32px rgba(0, 0, 0, .4);
+      transition: transform .3s var(--ease), box-shadow .3s;
+      animation: aiPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes aiPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 20px rgba(79, 255, 176, .3), 0 8px 32px rgba(0, 0, 0, .4);
+      }
+
+      50% {
+        box-shadow: 0 0 40px rgba(79, 255, 176, .5), 0 0 60px rgba(123, 97, 255, .3), 0 8px 32px rgba(0, 0, 0, .4);
+      }
+    }
+
+    #ai-btn:hover {
+      transform: scale(1.1);
+    }
+
+    #ai-btn .ai-tooltip {
+      position: absolute;
+      right: 68px;
+      background: var(--card);
+      border: 1px solid var(--border2);
+      color: var(--text2);
+      font-family: var(--ff-mono);
+      font-size: .65rem;
+      padding: 6px 12px;
+      border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s;
+      letter-spacing: .08em;
+    }
+
+    #ai-btn:hover .ai-tooltip {
+      opacity: 1;
+    }
+
+    #ai-panel {
+      position: fixed;
+      bottom: 100px;
+      right: 110px;
+      width: 380px;
+      max-height: 560px;
+      background: var(--card);
+      border: 1px solid rgba(79, 255, 176, .2);
+      border-radius: 16px;
+      z-index: 499;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, .6), 0 0 0 1px rgba(79, 255, 176, .05);
+      transform: scale(0.92) translateY(20px);
+      transform-origin: bottom right;
+      opacity: 0;
+      pointer-events: none;
+      transition: transform .35s var(--ease), opacity .35s var(--ease);
+      overflow: hidden;
+    }
+
+    #ai-panel.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .ai-head {
+      padding: 18px 20px;
+      background: linear-gradient(90deg, rgba(79, 255, 176, .06), rgba(123, 97, 255, .06));
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ai-avatar {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .ai-head-info {
+      flex: 1;
+    }
+
+    .ai-head-name {
+      font-family: var(--ff-head);
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .ai-head-sub {
+      font-family: var(--ff-mono);
+      font-size: .6rem;
+      color: var(--accent);
+      letter-spacing: .1em;
+      margin-top: 2px;
+    }
+
+    .ai-close {
+      width: 28px;
+      height: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: none;
+      color: var(--text2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .9rem;
+      transition: border-color .2s, color .2s;
+    }
+
+    .ai-close:hover {
+      border-color: var(--accent3);
+      color: var(--accent3);
+    }
+
+    .ai-msgs {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 200px;
+      max-height: 340px;
+    }
+
+    .ai-msgs::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .ai-msgs::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .ai-msgs::-webkit-scrollbar-thumb {
+      background: var(--border2);
+      border-radius: 10px;
+    }
+
+    .msg {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      animation: msgIn .3s var(--ease);
+    }
+
+    @keyframes msgIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .msg.user {
+      flex-direction: row-reverse;
+    }
+
+    .msg-bubble {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: .78rem;
+      line-height: 1.6;
+    }
+
+    .msg.bot .msg-bubble {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-bottom-left-radius: 4px;
+    }
+
+    .msg.user .msg-bubble {
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      color: #000;
+      font-weight: 500;
+      border-bottom-right-radius: 4px;
+    }
+
+    .msg-ic {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .75rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .msg.bot .msg-ic {
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+    }
+
+    .msg.user .msg-ic {
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .ai-typing {
+      display: flex;
+      gap: 4px;
+      padding: 12px 14px;
+    }
+
+    .ai-typing span {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: typingDot 1.2s ease-in-out infinite;
+    }
+
+    .ai-typing span:nth-child(2) {
+      animation-delay: .2s;
+    }
+
+    .ai-typing span:nth-child(3) {
+      animation-delay: .4s;
+    }
+
+    @keyframes typingDot {
+
+      0%,
+      80%,
+      100% {
+        transform: scale(0.6);
+        opacity: 0.4;
+      }
+
+      40% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .ai-suggestions {
+      padding: 0 16px 12px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .ai-sug {
+      padding: 5px 12px;
+      background: rgba(79, 255, 176, .05);
+      border: 1px solid rgba(79, 255, 176, .15);
+      color: var(--accent);
+      font-family: var(--ff-mono);
+      font-size: .6rem;
+      border-radius: 100px;
+      cursor: none;
+      transition: all .2s;
+      letter-spacing: .06em;
+    }
+
+    .ai-sug:hover {
+      background: rgba(79, 255, 176, .12);
+      border-color: rgba(79, 255, 176, .4);
+    }
+
+    .ai-inp-row {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .ai-inp {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 14px;
+      font-family: var(--ff-mono);
+      font-size: .75rem;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .ai-inp:focus {
+      border-color: var(--accent);
+    }
+
+    .ai-inp::placeholder {
+      color: var(--text3);
+    }
+
+    .ai-send {
+      width: 36px;
+      height: 36px;
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      cursor: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .9rem;
+      color: #000;
+      transition: box-shadow .2s, transform .2s;
+      flex-shrink: 0;
+    }
+
+    .ai-send:hover {
+      box-shadow: 0 0 20px rgba(79, 255, 176, .4);
+      transform: scale(1.05);
+    }
+
+    .ai-send:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     /* RESPONSIVE */
     @media(max-width:1024px) {
       nav {
@@ -1581,6 +1946,17 @@
       .scroll-i {
         display: none;
       }
+
+      #ai-panel {
+        width: calc(100vw - 32px);
+        right: 16px;
+        bottom: 80px;
+      }
+
+      #ai-btn {
+        right: 16px;
+        bottom: 16px;
+      }
     }
 
     @media(max-width:640px) {
@@ -1636,10 +2012,10 @@
     </div>
     <div class="nav-right">
       <div class="tgl" id="tgl">🌙</div>
-      <a href="https://fullauth-2266b.web.app" class="hire-btn"
-        style="background: transparent; border: 1px solid var(--border2); color: var(--text);">Login</a>
-      <a href="https://fullauth-2266b.web.app" class="hire-btn">Sign Up</a>
-      <a href="mailto:shadanyt17@gmail.com" class="hire-btn">Hire Me →</a>
+      <a href="https://fullauth-2266b.web.app" target="_blank" class="hire-btn"
+        style="background:transparent;border:1px solid var(--border2);color:var(--text);">Login</a>
+      <a href="https://fullauth-2266b.web.app" target="_blank" class="hire-btn">Sign Up</a>
+      <a href="mailto:pathanjafar963@gmail.com" class="hire-btn">Hire Me →</a>
     </div>
   </nav>
 
@@ -1678,7 +2054,7 @@
       <div class="hero-actions">
         <a href="#projects" class="btn-main">View My Work →</a>
         <a href="#contact" class="btn-gh">Get in Touch</a>
-        <a href="https://github.com/shadan143" target="_blank" class="btn-gh">⌥ GitHub</a>
+        <a href="https://github.com/pathanjafar" target="_blank" class="btn-gh">⌥ GitHub</a>
       </div>
     </div>
     <div class="scroll-i">
@@ -1690,7 +2066,7 @@
   <div class="sband">
     <div class="sband-i">
       <div class="si r"><span class="sn" data-c="4">0</span><span class="sl2">Projects Built</span></div>
-      <div class="si r"><span class="sn" data-c="8">0</span><span class="sl2">Technologies</span></div>
+      <div class="si r"><span class="sn" data-c="12">0</span><span class="sl2">Technologies</span></div>
       <div class="si r"><span class="sn" data-c="3">0</span><span class="sl2">Certifications</span></div>
       <div class="si r"><span class="sn" data-c="2026">0</span><span class="sl2">Grad Year</span></div>
     </div>
@@ -1701,130 +2077,111 @@
     <div class="wrap">
       <div class="stag r">Technical Arsenal</div>
       <h2 class="stitle r">Skills &amp; <em>Expertise</em></h2>
-      <div class="skills-l">
-        <div class="skl-left">
-          <h3 class="r">Core Proficiencies</h3>
-          <p class="r">Building full-stack web applications, REST APIs, and data analytics dashboards. Proficient in
-            Python-driven automation, backend services with Node.js, React frontends, and AWS deployment.</p>
-          <div class="sbars">
-            <div class="sbi r">
-              <div class="sbh"><span class="sbn">Python</span><span class="sbp">88%</span></div>
-              <div class="sbt">
-                <div class="sbf" data-w="88"></div>
-              </div>
-            </div>
-            <div class="sbi r">
-              <div class="sbh"><span class="sbn">React.js</span><span class="sbp">80%</span></div>
-              <div class="sbt">
-                <div class="sbf" data-w="80"></div>
-              </div>
-            </div>
-            <div class="sbi r">
-              <div class="sbh"><span class="sbn">Node.js / Express</span><span class="sbp">76%</span></div>
-              <div class="sbt">
-                <div class="sbf" data-w="76"></div>
-              </div>
-            </div>
-            <div class="sbi r">
-              <div class="sbh"><span class="sbn">JavaScript</span><span class="sbp">82%</span></div>
-              <div class="sbt">
-                <div class="sbf" data-w="82"></div>
-              </div>
-            </div>
-            <div class="sbi r">
-              <div class="sbh"><span class="sbn">SQL / MongoDB</span><span class="sbp">83%</span></div>
-              <div class="sbt">
-                <div class="sbf" data-w="83"></div>
-              </div>
-            </div>
-            <div class="sbi r">
-              <div class="sbh"><span class="sbn">Power BI / Data Analytics</span><span class="sbp">78%</span></div>
-              <div class="sbt">
-                <div class="sbf" data-w="78"></div>
-              </div>
-            </div>
-            <div class="sbi r">
-              <div class="sbh"><span class="sbn">AWS (EC2, S3, IAM)</span><span class="sbp">70%</span></div>
-              <div class="sbt">
-                <div class="sbf" data-w="70"></div>
-              </div>
-            </div>
+      <div class="skills-intro r">
+        <h3>Core Proficiencies</h3>
+        <p>Building full-stack web applications, REST APIs, and data analytics dashboards. Proficient in Python-driven
+          automation, backend services with Node.js, React frontends, and AWS deployment.</p>
+      </div>
+      <div class="skill-cats">
+
+        <div class="scat r" style="--cat-color:#4fffb0;">
+          <div class="scat-head">
+            <div class="scat-ic">🌐</div>
+            <span class="scat-lbl">Frontend</span>
+          </div>
+          <div class="stags">
+            <span class="stag2 core">React.js</span>
+            <span class="stag2 core">Next.js</span>
+            <span class="stag2">HTML5</span>
+            <span class="stag2">CSS3</span>
+            <span class="stag2">JavaScript</span>
+            <span class="stag2">TypeScript</span>
+            <span class="stag2">Tailwind CSS</span>
+            <span class="stag2">Bootstrap</span>
           </div>
         </div>
-        <div class="skl-right r">
-          <div class="schip ft"><span class="chip-ic">🐍</span>
-            <div>
-              <div class="chip-n">Python</div>
-              <div class="chip-t">Primary Language</div>
-            </div>
+
+        <div class="scat r" style="--cat-color:#7b61ff;">
+          <div class="scat-head">
+            <div class="scat-ic">⚙️</div>
+            <span class="scat-lbl">Backend</span>
           </div>
-          <div class="schip ft"><span class="chip-ic">⚛️</span>
-            <div>
-              <div class="chip-n">React.js</div>
-              <div class="chip-t">Frontend Framework</div>
-            </div>
-          </div>
-          <div class="schip ft"><span class="chip-ic">🟢</span>
-            <div>
-              <div class="chip-n">Node.js</div>
-              <div class="chip-t">Backend Runtime</div>
-            </div>
-          </div>
-          <div class="schip ft"><span class="chip-ic">🔶</span>
-            <div>
-              <div class="chip-n">Express.js</div>
-              <div class="chip-t">REST API Framework</div>
-            </div>
-          </div>
-          <div class="schip"><span class="chip-ic">🌐</span>
-            <div>
-              <div class="chip-n">HTML5 / CSS3</div>
-              <div class="chip-t">Frontend</div>
-            </div>
-          </div>
-          <div class="schip"><span class="chip-ic">📜</span>
-            <div>
-              <div class="chip-n">JavaScript</div>
-              <div class="chip-t">Core Language</div>
-            </div>
-          </div>
-          <div class="schip"><span class="chip-ic">🗄️</span>
-            <div>
-              <div class="chip-n">MySQL</div>
-              <div class="chip-t">Relational DB</div>
-            </div>
-          </div>
-          <div class="schip"><span class="chip-ic">🍃</span>
-            <div>
-              <div class="chip-n">MongoDB</div>
-              <div class="chip-t">NoSQL Database</div>
-            </div>
-          </div>
-          <div class="schip"><span class="chip-ic">☁️</span>
-            <div>
-              <div class="chip-n">AWS</div>
-              <div class="chip-t">EC2 · S3 · IAM</div>
-            </div>
-          </div>
-          <div class="schip"><span class="chip-ic">📊</span>
-            <div>
-              <div class="chip-n">Power BI</div>
-              <div class="chip-t">Data Visualization</div>
-            </div>
-          </div>
-          <div class="schip"><span class="chip-ic">🧮</span>
-            <div>
-              <div class="chip-n">Pandas / NumPy</div>
-              <div class="chip-t">Data Analysis</div>
-            </div>
-          </div>
-          <div class="schip"><span class="chip-ic">🔧</span>
-            <div>
-              <div class="chip-n">Git / GitHub</div>
-              <div class="chip-t">Version Control</div>
-            </div>
+          <div class="stags">
+            <span class="stag2 core">Node.js</span>
+            <span class="stag2 core">Express.js</span>
+            <span class="stag2">FastAPI</span>
+            <span class="stag2">REST APIs</span>
+            <span class="stag2">Socket.io</span>
+            <span class="stag2">JWT / bcrypt</span>
+            <span class="stag2">MVC Pattern</span>
           </div>
         </div>
+
+        <div class="scat r" style="--cat-color:#ffd166;">
+          <div class="scat-head">
+            <div class="scat-ic">🗄️</div>
+            <span class="scat-lbl">Databases</span>
+          </div>
+          <div class="stags">
+            <span class="stag2 core">PostgreSQL</span>
+            <span class="stag2 core">MongoDB</span>
+            <span class="stag2">MySQL</span>
+            <span class="stag2">Redis</span>
+            <span class="stag2">Prisma ORM</span>
+            <span class="stag2">SQL Design</span>
+          </div>
+        </div>
+
+        <div class="scat r" style="--cat-color:#ff6b6b;">
+          <div class="scat-head">
+            <div class="scat-ic">🤖</div>
+            <span class="scat-lbl">AI / ML</span>
+          </div>
+          <div class="stags">
+            <span class="stag2 core">Python</span>
+            <span class="stag2 core">TensorFlow</span>
+            <span class="stag2">LSTM / Keras</span>
+            <span class="stag2">Pandas</span>
+            <span class="stag2">NumPy</span>
+            <span class="stag2">Streamlit</span>
+            <span class="stag2">Gemini API</span>
+            <span class="stag2">scikit-learn</span>
+          </div>
+        </div>
+
+        <div class="scat r" style="--cat-color:#64d2ff;">
+          <div class="scat-head">
+            <div class="scat-ic">☁️</div>
+            <span class="scat-lbl">Cloud / DevOps</span>
+          </div>
+          <div class="stags">
+            <span class="stag2 core">AWS EC2</span>
+            <span class="stag2">S3</span>
+            <span class="stag2">IAM</span>
+            <span class="stag2">CloudWatch</span>
+            <span class="stag2">Docker</span>
+            <span class="stag2">Nginx</span>
+            <span class="stag2">PM2</span>
+            <span class="stag2">RabbitMQ</span>
+          </div>
+        </div>
+
+        <div class="scat r" style="--cat-color:#c084fc;">
+          <div class="scat-head">
+            <div class="scat-ic">🔧</div>
+            <span class="scat-lbl">Tools</span>
+          </div>
+          <div class="stags">
+            <span class="stag2 core">Git / GitHub</span>
+            <span class="stag2">Postman</span>
+            <span class="stag2">VS Code</span>
+            <span class="stag2">Power BI</span>
+            <span class="stag2">Firebase</span>
+            <span class="stag2">Cloudinary</span>
+            <span class="stag2">Vercel</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1836,77 +2193,124 @@
       <h2 class="stitle r">Featured <em>Projects</em></h2>
       <div class="pf r">
         <button class="fb act" data-f="all">All</button>
-        <button class="fb" data-f="python">Python</button>
-        <button class="fb" data-f="web">Web Dev</button>
-        <button class="fb" data-f="data">Data / BI</button>
-        <button class="fb" data-f="ml">Machine Learning</button>
+        <button class="fb" data-f="web">Full Stack</button>
+        <button class="fb" data-f="ai">AI / ML</button>
+        <button class="fb" data-f="realtime">Real-time</button>
       </div>
       <div class="pg" id="pg">
-        <div class="pc r" data-cat="python web">
+
+        <!-- 01 — ShadowTalk -->
+        <div class="pc r" data-cat="web realtime">
           <div class="pt">
-            <div class="pbg"></div>
+            <div class="pbg" style="background:linear-gradient(135deg,#040015,#0a0020)"></div>
             <div class="ptg"></div>
-            <div class="pnm">01</div><span class="pic">🗂️</span>
+            <div class="pnm">01</div>
+            <span class="pic">🛡️</span>
           </div>
           <div class="pb">
-            <div class="ptags"><span class="ptag">Python</span><span class="ptag">SQL</span><span
-                class="ptag p2">MongoDB</span><span class="ptag">Flask</span></div>
-            <h3>Student Registration System</h3>
-            <p>CRUD-based backend with secure input validation and a hybrid SQL + MongoDB architecture. Automated query
-              operations deliver significantly faster data retrieval at scale.</p>
+            <div class="ptags">
+              <span class="ptag">Next.js</span>
+              <span class="ptag p2">Socket.io</span>
+              <span class="ptag">Node.js</span>
+              <span class="ptag p2">MongoDB</span>
+              <span class="ptag p3">Docker</span>
+              <span class="ptag">Redis</span>
+              <span class="ptag p4">RabbitMQ</span>
+            </div>
+            <h3>ShadowTalk — E2E Encrypted Chat</h3>
+            <p>Production-ready decentralized real-time chat platform with end-to-end encryption. Built on a
+              microservices architecture (Auth, Chat, Media, Notification services) with Docker, Firebase Auth,
+              Cloudinary media, and FCM push notifications.</p>
             <div class="pfoot">
-              <a href="https://github.com/shadan143" target="_blank" class="plink pri">⌥ GitHub</a>
-              <a href="#" class="plink">↗ Live Demo</a>
+              <a href="https://github.com/pathanjafar/ShadowTalk" target="_blank" class="plink pri">⌥ GitHub</a>
+              <a href="https://github.com/pathanjafar/ShadowTalk" target="_blank" class="plink">↗ Live Demo</a>
             </div>
           </div>
         </div>
+
+        <!-- 02 — CRM App -->
         <div class="pc r" data-cat="web">
           <div class="pt">
-            <div class="pbg" style="background:linear-gradient(135deg,#0a0020,#0d0d1a)"></div>
+            <div class="pbg" style="background:linear-gradient(135deg,#00100a,#001a12)"></div>
             <div class="ptg"></div>
-            <div class="pnm">02</div><span class="pic">🖥️</span>
+            <div class="pnm">02</div>
+            <span class="pic">📊</span>
           </div>
           <div class="pb">
-            <div class="ptags"><span class="ptag">React.js</span><span class="ptag">Node.js</span><span
-                class="ptag">HTML/CSS</span></div>
-            <h3>Portfolio Website</h3>
-            <p>Fully responsive, device-optimized portfolio with React components, smooth animations, and modern UX
-              patterns.</p>
-            <div class="pfoot"><a href="https://github.com/pathajafar" target="_blank" class="plink pri">⌥ GitHub</a>
+            <div class="ptags">
+              <span class="ptag">Next.js 16</span>
+              <span class="ptag p2">TypeScript</span>
+              <span class="ptag">PostgreSQL</span>
+              <span class="ptag p2">Prisma 7</span>
+              <span class="ptag">Recharts</span>
+            </div>
+            <h3>CRM App</h3>
+            <p>Full-stack Sales Analytics CRM with live KPI dashboard, lead management with bulk CSV import, role-based
+              agent admin panel, performance analytics, and assignment queue. Built with Next.js 16 App Router, Prisma
+              ORM, and PostgreSQL.</p>
+            <div class="pfoot">
+              <a href="https://github.com/pathanjafar/crm-app" target="_blank" class="plink pri">⌥ GitHub</a>
+              <a href="https://crm-app-two-weld.vercel.app" target="_blank" class="plink">↗ Live Demo</a>
             </div>
           </div>
         </div>
-        <div class="pc r" data-cat="data">
+
+        <!-- 03 — AI Expense Tracker -->
+        <div class="pc r" data-cat="ai web">
           <div class="pt">
-            <div class="pbg" style="background:linear-gradient(135deg,#0d0a00,#1a110d)"></div>
+            <div class="pbg" style="background:linear-gradient(135deg,#0d0500,#1a0d00)"></div>
             <div class="ptg"></div>
-            <div class="pnm">03</div><span class="pic">📊</span>
+            <div class="pnm">03</div>
+            <span class="pic">💸</span>
           </div>
           <div class="pb">
-            <div class="ptags"><span class="ptag p4">Power BI</span><span class="ptag">Excel</span><span
-                class="ptag">DAX</span></div>
-            <h3>Sales Data Dashboard</h3>
-            <p>KPI dashboard visualizing revenue trends and product performance across 5,000+ cleaned rows using Power
-              Query and DAX formulas.</p>
-            <div class="pfoot"><a href="#" class="plink pri">↗ View Report</a></div>
-          </div>
-        </div>
-        <div class="pc r" data-cat="ml python">
-          <div class="pt">
-            <div class="pbg" style="background:linear-gradient(135deg,#0d000a,#1a0d0d)"></div>
-            <div class="ptg"></div>
-            <div class="pnm">04</div><span class="pic">🤖</span>
-          </div>
-          <div class="pb">
-            <div class="ptags"><span class="ptag p3">ML</span><span class="ptag">Python</span><span
-                class="ptag p2">Pandas</span><span class="ptag">Matplotlib</span></div>
-            <h3>ML Regression Model</h3>
-            <p>House price prediction with comprehensive EDA. Feature engineering and visualization to surface key
-              predictors and model accuracy optimization.</p>
-            <div class="pfoot"><a href="https://github.com/pathanjafar" target="_blank" class="plink pri">⌥ GitHub</a>
+            <div class="ptags">
+              <span class="ptag p4">Gemini 2.5 Flash</span>
+              <span class="ptag">React 19</span>
+              <span class="ptag">Vite</span>
+              <span class="ptag p2">Chart.js</span>
+              <span class="ptag">jsPDF</span>
+            </div>
+            <h3>AI Expense Tracker</h3>
+            <p>Smart expense tracker powered by Google Gemini 2.5 Flash AI for automatic transaction categorization,
+              Indian Bank/UPI SMS parsing, and personalized financial coaching. Includes PDF reports, WhatsApp sharing,
+              and CSV export.</p>
+            <div class="pfoot">
+              <a href="https://github.com/pathanjafar/AI-EXPENSE-TRACKER" target="_blank" class="plink pri">⌥ GitHub</a>
+              <a href="https://ai-expense-tracker-indol.vercel.app" target="_blank" class="plink">↗ Live Demo</a>
             </div>
           </div>
         </div>
+
+        <!-- 04 — Stock Price Prediction -->
+        <div class="pc r" data-cat="ai">
+          <div class="pt">
+            <div class="pbg" style="background:linear-gradient(135deg,#000d1a,#001425)"></div>
+            <div class="ptg"></div>
+            <div class="pnm">04</div>
+            <span class="pic">📈</span>
+          </div>
+          <div class="pb">
+            <div class="ptags">
+              <span class="ptag p3">LSTM / TensorFlow</span>
+              <span class="ptag">Python</span>
+              <span class="ptag p2">Streamlit</span>
+              <span class="ptag">Plotly</span>
+              <span class="ptag">yfinance</span>
+            </div>
+            <h3>AlphaForecaster Pro</h3>
+            <p>Advanced AI stock prediction platform using Bidirectional & Stacked LSTM neural networks. Features 9+
+              technical indicators (RSI, MACD, Bollinger Bands), risk dashboard (Sharpe ratio, VaR), portfolio tracker,
+              and PDF report generation for NSE/US markets.</p>
+            <div class="pfoot">
+              <a href="https://github.com/pathanjafar/stockpricepredicting" target="_blank" class="plink pri">⌥
+                GitHub</a>
+              <a href="https://github.com/pathanjafar/stockpricepredicting" target="_blank" class="plink">↗ Live
+                Demo</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1974,7 +2378,7 @@
           <h3>Clean, functional code is my craft.</h3>
           <p>Whether it's a Python REST API, a React component, or a Node.js service — I write code that is readable,
             maintainable, and built with intent and best practices.</p>
-          <a href="https://github.com/shadan143" target="_blank" class="btn-gh"
+          <a href="https://github.com/pathanjafar" target="_blank" class="btn-gh"
             style="display:inline-flex;margin-top:8px;">⌥ See all on GitHub</a>
         </div>
         <div class="r">
@@ -1983,28 +2387,29 @@
               <div class="cdot" style="background:#ff5f57;"></div>
               <div class="cdot" style="background:#febc2e;"></div>
               <div class="cdot" style="background:#28c840;"></div>
-              <span class="cfile">api/students.js (Node.js)</span>
+              <span class="cfile">services/chat.service.js</span>
             </div>
-            <div class="cbody"><span class="cc">// Student API — Express + MongoDB</span>
-              <span class="ck">const</span> express = <span class="cf">require</span>(<span class="cs">'express'</span>)
-              <span class="ck">const</span> <span class="ccl">Student</span> = <span class="cf">require</span>(<span
-                class="cs">'./models/Student'</span>)
-              <span class="ck">const</span> router = express.<span class="cf">Router</span>()
+            <div class="cbody">
+              <span class="cc">// ShadowTalk — Socket.io + E2E Encryption</span>
+              <span class="ck">const</span> { <span class="ccl">encrypt</span>, <span class="ccl">decrypt</span> } =
+              <span class="cf">require</span>(<span class="cs">'../utils/crypto'</span>)
 
-              router.<span class="cf">post</span>(<span class="cs">'/register'</span>, <span class="ck">async</span>
-              (req, res) => {
-              <span class="ck">const</span> { name, roll, email } = req.body
-              <span class="ck">if</span> (!name || !roll)
-              <span class="ck">return</span> res.<span class="cf">status</span>(<span class="cn">400</span>).<span
-                class="cf">json</span>({ error: <span class="cs">'Missing fields'</span> })
-
-              <span class="ck">const</span> student = <span class="ck">await</span> <span
-                class="ccl">Student</span>.<span class="cf">create</span>({ name, roll, email })
-              res.<span class="cf">status</span>(<span class="cn">201</span>).<span class="cf">json</span>({ success:
-              <span class="ck">true</span>, student })
+              io.<span class="cf">on</span>(<span class="cs">'connection'</span>, (socket) => {
+              socket.<span class="cf">on</span>(<span class="cs">'send_message'</span>, <span class="ck">async</span>
+              (data) => {
+              <span class="ck">const</span> encrypted = <span class="cf">encrypt</span>(data.text, data.key)
+              <span class="ck">await</span> <span class="ccl">Message</span>.<span class="cf">create</span>({
+              room: data.room,
+              sender: data.userId,
+              content: encrypted,
+              iv: encrypted.iv
               })
-
-              module.exports = router
+              io.<span class="cf">to</span>(data.room).<span class="cf">emit</span>(<span
+                class="cs">'new_message'</span>, {
+              ...data, content: encrypted
+              })
+              })
+              })
             </div>
           </div>
         </div>
@@ -2027,28 +2432,32 @@
               <div>
                 <div class="cc2-lbl">Email</div>
                 <div class="cc2-v">pathanjafar963@gmail.com</div>
-              </div><span class="cc2-arr">→</span>
+              </div>
+              <span class="cc2-arr">→</span>
             </a>
             <a href="tel:+919182641412" class="cc2">
               <div class="cc2-ic">☎</div>
               <div>
                 <div class="cc2-lbl">Phone</div>
                 <div class="cc2-v">+91 9182641412</div>
-              </div><span class="cc2-arr">→</span>
+              </div>
+              <span class="cc2-arr">→</span>
             </a>
             <a href="https://linkedin.com/in/pathan-jafar-ab649b322" target="_blank" class="cc2">
               <div class="cc2-ic">in</div>
               <div>
                 <div class="cc2-lbl">LinkedIn</div>
                 <div class="cc2-v">pathan-jafar-ab649b322</div>
-              </div><span class="cc2-arr">→</span>
+              </div>
+              <span class="cc2-arr">→</span>
             </a>
             <a href="https://github.com/pathanjafar" target="_blank" class="cc2">
               <div class="cc2-ic">⌥</div>
               <div>
                 <div class="cc2-lbl">GitHub</div>
                 <div class="cc2-v">github.com/pathanjafar</div>
-              </div><span class="cc2-arr">→</span>
+              </div>
+              <span class="cc2-arr">→</span>
             </a>
           </div>
         </div>
@@ -2083,19 +2492,214 @@
     <div class="fi">
       <div class="flogo">Pathan Jafar<span>.</span></div>
       <div class="flinks">
-        <a href="https://github.com/shadan143" target="_blank">GitHub</a>
+        <a href="https://github.com/pathanjafar" target="_blank">GitHub</a>
         <a href="https://linkedin.com/in/pathan-jafar-ab649b322" target="_blank">LinkedIn</a>
-        <a href="mailto:shadanyt17@gmail.com">Email</a>
+        <a href="mailto:pathanjafar963@gmail.com">Email</a>
       </div>
-      <p>© 2025 Pathan Jafar · Full Stack &amp; Python Developer</p>
+      <p>© 2026 Pathan Jafar · Full Stack &amp; Python Developer</p>
     </div>
   </footer>
 
   <div id="btop" onclick="scrollTo({top:0,behavior:'smooth'})">↑</div>
   <div id="toast">✓ Message sent successfully!</div>
 
+  <!-- AI ASSISTANT -->
+  <button id="ai-btn" onclick="toggleAI()">
+    🤖
+    <span class="ai-tooltip">Ask me anything</span>
+  </button>
+
+  <div id="ai-panel">
+    <div class="ai-head">
+      <div class="ai-avatar">🤖</div>
+      <div class="ai-head-info">
+        <div class="ai-head-name">Jafar's AI Assistant</div>
+        <div class="ai-head-sub">● ONLINE · Powered by Claude</div>
+      </div>
+      <div class="ai-close" onclick="toggleAI()">✕</div>
+    </div>
+    <div class="ai-msgs" id="ai-msgs">
+      <div class="msg bot">
+        <div class="msg-ic">🤖</div>
+        <div class="msg-bubble">Hey! I'm Jafar's AI assistant. Ask me anything about his skills, projects, experience,
+          or how to get in touch. 👋</div>
+      </div>
+    </div>
+    <div class="ai-suggestions" id="ai-sugs">
+      <button class="ai-sug" onclick="askSug(this)">What projects did you build?</button>
+      <button class="ai-sug" onclick="askSug(this)">What's your tech stack?</button>
+      <button class="ai-sug" onclick="askSug(this)">Are you available to hire?</button>
+      <button class="ai-sug" onclick="askSug(this)">Tell me about ShadowTalk</button>
+    </div>
+    <div class="ai-inp-row">
+      <input class="ai-inp" id="ai-inp" type="text" placeholder="Ask about Jafar..."
+        onkeydown="if(event.key==='Enter')sendAI()">
+      <button class="ai-send" id="ai-send-btn" onclick="sendAI()">➤</button>
+    </div>
+  </div>
+
   <script>
-    /* LOADER */
+    /* ===== PORTFOLIO DATA FOR AI ===== */
+    const PORTFOLIO_CONTEXT = `
+You are an AI assistant embedded in Pathan Jafar's personal portfolio website. Your job is to answer questions about Jafar only — using the data below. Do NOT answer questions unrelated to Jafar (like general coding help, world news, etc.). Keep answers concise, friendly, and in first-person as if you're speaking on Jafar's behalf.
+
+=== ABOUT ===
+Name: Pathan Jafar (also known as Shadan)
+Role: Full Stack Developer
+Education: B.Tech Computer Science & Engineering, Viswam Engineering College, Madanapalle, JNTUA. Expected graduation: April 2026. CGPA: 7.0
+Location: Kadiri, Andhra Pradesh, India
+Status: Final-year student, actively seeking Full Stack Developer internships or entry-level roles
+
+=== CONTACT ===
+Email: pathanjafar963@gmail.com
+Phone: +91 9182641412
+GitHub: github.com/pathanjafar
+LinkedIn: linkedin.com/in/pathan-jafar-ab649b322
+
+=== TECHNICAL SKILLS ===
+Frontend: HTML5, CSS3, JavaScript (ES6+), React.js, Next.js, TypeScript, Responsive Web Design, Bootstrap, Tailwind CSS
+Backend: Node.js, Express.js, FastAPI, REST API Design & Integration, Socket.io
+Languages: JavaScript, Python, TypeScript, SQL
+Databases: PostgreSQL, MySQL, MongoDB, Redis
+Auth & Security: JWT, bcrypt, E2E Encryption, Input Validation, Session Handling, Firebase Auth
+DevOps/Infra: Docker, Docker Compose, AWS (EC2, S3, IAM, CloudWatch), Nginx, PM2
+AI/ML: TensorFlow/Keras, LSTM Neural Networks, Streamlit, Google Gemini API, Pandas, NumPy, Plotly, yfinance, scikit-learn
+Other: Git/GitHub, Postman, Prisma ORM, RabbitMQ, Cloudinary, Firebase Cloud Messaging, Power BI
+
+=== PROJECTS ===
+
+1. ShadowTalk (Real-time E2E Encrypted Chat Platform)
+   - Stack: Next.js, Node.js, Socket.io, MongoDB, Redis, RabbitMQ, Docker, Firebase Auth, Cloudinary
+   - Microservices: Auth Service, Chat Service, User Service, Media Service, Notification Service
+   - Features: End-to-end encryption, real-time messaging, push notifications, media sharing, Google Auth
+   - GitHub: github.com/pathanjafar/ShadowTalk
+
+2. Antigravity CRM (Sales Analytics CRM)
+   - Stack: Next.js 16 (App Router), TypeScript, PostgreSQL, Prisma 7, Recharts, Framer Motion
+   - Features: Live KPI dashboard, lead management with bulk CSV import, role-based agent panel, performance analytics, assignment queue with load balancing
+   - Live: https://crm-app-two-weld.vercel.app
+   - GitHub: github.com/pathanjafar/crm-app
+
+3. AI Expense Tracker
+   - Stack: React 19, Vite, Google Gemini 2.5 Flash API, Chart.js, jsPDF
+   - Features: AI auto-categorization, Indian Bank/UPI SMS parsing (HDFC, ICICI, SBI, PhonePe, GPay), financial coaching, PDF & CSV export, WhatsApp sharing
+   - Live: https://ai-expense-tracker-indol.vercel.app
+   - GitHub: github.com/pathanjafar/AI-EXPENSE-TRACKER
+
+4. AlphaForecaster Pro (Stock Price Prediction)
+   - Stack: Python, TensorFlow/Keras, Streamlit, Plotly, yfinance, scikit-learn, FPDF
+   - Features: Bidirectional & Stacked LSTM, 9+ technical indicators (RSI, MACD, Bollinger Bands), risk dashboard (Sharpe, VaR, Max Drawdown), portfolio tracker, NSE/US market support, PDF reports
+   - GitHub: github.com/pathanjafar/stockpricepredicting
+
+=== EXPERIENCE ===
+AWS Cloud Computing Intern | May–July 2025 | Remote, India
+- Worked with EC2, S3, IAM, and CloudWatch
+- Deployed and managed cloud infrastructure with best practices for security and scalability
+
+=== CERTIFICATIONS ===
+- AWS Cloud Internship Certification (May–July 2025)
+- Power BI & Data Analytics Workshop (August 2025)
+- AI, Machine Learning & IoT Workshop (December 2024)
+
+=== AVAILABILITY ===
+Open to internships and full-time roles in Full Stack Development, Backend Engineering, Python development, and related areas. Responds within 24 hours.
+
+=== INSTRUCTIONS ===
+- Only answer questions related to Jafar's portfolio, skills, projects, experience, contact, or availability
+- If asked something unrelated, politely say "I can only answer questions about Jafar's portfolio. Try asking about his projects, skills, or how to contact him!"
+- Be concise, friendly, and conversational
+- Use bullet points for lists when helpful
+- Don't make up information not in the context above
+`;
+
+    /* ===== AI PANEL TOGGLE ===== */
+    let aiOpen = false;
+    function toggleAI() {
+      aiOpen = !aiOpen;
+      document.getElementById('ai-panel').classList.toggle('open', aiOpen);
+    }
+
+    function askSug(btn) {
+      document.getElementById('ai-inp').value = btn.textContent;
+      document.getElementById('ai-sugs').style.display = 'none';
+      sendAI();
+    }
+
+    async function sendAI() {
+      const inp = document.getElementById('ai-inp');
+      const q = inp.value.trim();
+      if (!q) return;
+
+      const msgs = document.getElementById('ai-msgs');
+      const sendBtn = document.getElementById('ai-send-btn');
+
+      // Add user message
+      msgs.innerHTML += `
+        <div class="msg user">
+          <div class="msg-ic">👤</div>
+          <div class="msg-bubble">${escHtml(q)}</div>
+        </div>`;
+      inp.value = '';
+      sendBtn.disabled = true;
+      msgs.scrollTop = msgs.scrollHeight;
+
+      // Add typing indicator
+      const typingId = 'typing-' + Date.now();
+      msgs.innerHTML += `
+        <div class="msg bot" id="${typingId}">
+          <div class="msg-ic">🤖</div>
+          <div class="msg-bubble"><div class="ai-typing"><span></span><span></span><span></span></div></div>
+        </div>`;
+      msgs.scrollTop = msgs.scrollHeight;
+
+      try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1000,
+            system: PORTFOLIO_CONTEXT,
+            messages: [{ role: 'user', content: q }]
+          })
+        });
+
+        const data = await res.json();
+        const answer = data.content?.[0]?.text || "Sorry, I couldn't get a response right now.";
+
+        document.getElementById(typingId)?.remove();
+        msgs.innerHTML += `
+          <div class="msg bot">
+            <div class="msg-ic">🤖</div>
+            <div class="msg-bubble">${formatMsg(answer)}</div>
+          </div>`;
+      } catch (e) {
+        document.getElementById(typingId)?.remove();
+        msgs.innerHTML += `
+          <div class="msg bot">
+            <div class="msg-ic">🤖</div>
+            <div class="msg-bubble">Oops! Something went wrong. Try again in a moment.</div>
+          </div>`;
+      }
+
+      sendBtn.disabled = false;
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function escHtml(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function formatMsg(text) {
+      return escHtml(text)
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/`(.*?)`/g, '<code style="background:rgba(79,255,176,.1);padding:1px 5px;border-radius:3px;font-family:var(--ff-mono);font-size:.85em;">$1</code>')
+        .replace(/\n- /g, '<br>• ')
+        .replace(/\n/g, '<br>');
+    }
+
+    /* ===== LOADER ===== */
     window.addEventListener('load', () => {
       const bar = document.getElementById('lbar'), pct = document.getElementById('lpct'), loader = document.getElementById('loader');
       let p = 0; bar.style.width = '100%';
@@ -2106,90 +2710,56 @@
       }, 80);
     });
 
-    /* PARTICLES */
+    /* ===== PARTICLES ===== */
     const cv = document.getElementById('pcv'), ctx = cv.getContext('2d');
-    let pts = [];
     function rsz() { cv.width = innerWidth; cv.height = innerHeight; } rsz(); addEventListener('resize', rsz);
     class P { constructor() { this.reset(); } reset() { this.x = Math.random() * cv.width; this.y = Math.random() * cv.height; this.s = Math.random() * 1.5 + .4; this.sx = (Math.random() - .5) * .3; this.sy = (Math.random() - .5) * .3; this.o = Math.random() * .4 + .1; } update() { this.x += this.sx; this.y += this.sy; if (this.x < 0 || this.x > cv.width || this.y < 0 || this.y > cv.height) this.reset(); } draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.s, 0, Math.PI * 2); ctx.fillStyle = `rgba(79,255,176,${this.o})`; ctx.fill(); } }
-    for (let i = 0; i < 60; i++)pts.push(new P());
-    function drawPts() {
-      ctx.clearRect(0, 0, cv.width, cv.height);
-      pts.forEach(p => { p.update(); p.draw(); });
-      for (let i = 0; i < pts.length; i++)for (let j = i + 1; j < pts.length; j++) {
-        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y, d = Math.sqrt(dx * dx + dy * dy);
-        if (d < 120) { ctx.beginPath(); ctx.strokeStyle = `rgba(79,255,176,${.04 * (1 - d / 120)})`; ctx.lineWidth = .5; ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke(); }
-      }
-      requestAnimationFrame(drawPts);
-    } drawPts();
+    const pts = []; for (let i = 0; i < 60; i++)pts.push(new P());
+    function drawPts() { ctx.clearRect(0, 0, cv.width, cv.height); pts.forEach(p => { p.update(); p.draw(); }); for (let i = 0; i < pts.length; i++)for (let j = i + 1; j < pts.length; j++) { const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y, d = Math.sqrt(dx * dx + dy * dy); if (d < 120) { ctx.beginPath(); ctx.strokeStyle = `rgba(79,255,176,${.04 * (1 - d / 120)})`; ctx.lineWidth = .5; ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke(); } } requestAnimationFrame(drawPts); } drawPts();
 
-    /* CURSOR */
+    /* ===== CURSOR ===== */
     const cd = document.getElementById('cd'), cr = document.getElementById('cr'), cdel = document.getElementById('cdel'), crel = document.getElementById('crel');
     let mx = 0, my = 0, rx = 0, ry = 0;
     addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cd.style.left = mx + 'px'; cd.style.top = my + 'px'; });
     function animR() { rx += (mx - rx) * .12; ry += (my - ry) * .12; cr.style.left = rx + 'px'; cr.style.top = ry + 'px'; requestAnimationFrame(animR); } animR();
-    document.querySelectorAll('a,button,.pc,.schip,.cc2,.fb,.tgl,#btop').forEach(el => {
+    document.querySelectorAll('a,button,.pc,.schip,.cc2,.fb,.tgl,#btop,#ai-btn,.ai-close,.ai-sug,.ai-send').forEach(el => {
       el.addEventListener('mouseenter', () => { cdel.classList.add('hov'); crel.classList.add('hov'); });
       el.addEventListener('mouseleave', () => { cdel.classList.remove('hov'); crel.classList.remove('hov'); });
     });
 
-    /* TYPING */
-    const phrases = ['python --version 3.12', 'react create-app portfolio', 'node server.js --port 3000', 'git commit -m "ship it 🚀"', 'npm run build', 'python manage.py runserver'];
+    /* ===== TYPING ===== */
+    const phrases = ['next dev --turbo', 'node services/chat --port 3001', 'python main.py --model lstm', 'git push origin main', 'docker-compose up -d', 'npm run build && deploy'];
     let pi = 0, ci = 0, del = false;
     const tel = document.getElementById('typed');
-    function startTyping() {
-      function t() {
-        const ph = phrases[pi];
-        if (!del) { tel.textContent = ph.slice(0, ci++); if (ci > ph.length) { del = true; setTimeout(t, 1800); return; } }
-        else { tel.textContent = ph.slice(0, ci--); if (ci < 0) { del = false; pi = (pi + 1) % phrases.length; ci = 0; } }
-        setTimeout(t, del ? 40 : 75);
-      } t();
-    }
+    function startTyping() { function t() { const ph = phrases[pi]; if (!del) { tel.textContent = ph.slice(0, ci++); if (ci > ph.length) { del = true; setTimeout(t, 1800); return; } } else { tel.textContent = ph.slice(0, ci--); if (ci < 0) { del = false; pi = (pi + 1) % phrases.length; ci = 0; } } setTimeout(t, del ? 40 : 75); } t(); }
 
-    /* SCROLL */
-    const prog = document.getElementById('prog'), btop = document.getElementById('btop'), nav = document.getElementById('nav');
+    /* ===== SCROLL ===== */
+    const prog = document.getElementById('prog'), btop = document.getElementById('btop'), navEl = document.getElementById('nav');
     let ls = 0;
     addEventListener('scroll', () => {
       const sc = scrollY, mx2 = document.body.scrollHeight - innerHeight;
       prog.style.transform = `scaleX(${sc / mx2})`;
       btop.classList.toggle('show', sc > 400);
-      if (sc > ls && sc > 200) nav.classList.add('hide'); else nav.classList.remove('hide');
+      if (sc > ls && sc > 200) navEl.classList.add('hide'); else navEl.classList.remove('hide');
       ls = sc;
       ['home', 'skills', 'projects', 'exp', 'contact'].forEach(id => {
         const el = document.getElementById(id); if (!el) return;
         const r = el.getBoundingClientRect();
-        if (r.top <= 100 && r.bottom >= 100) {
-          document.querySelectorAll('.npill').forEach(p => p.classList.remove('act'));
-          const a = document.querySelector(`.npill[href="#${id}"]`); if (a) a.classList.add('act');
-        }
+        if (r.top <= 100 && r.bottom >= 100) { document.querySelectorAll('.npill').forEach(p => p.classList.remove('act')); const a = document.querySelector(`.npill[href="#${id}"]`); if (a) a.classList.add('act'); }
       });
     });
 
-    /* REVEAL */
-    const ro = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
-    }, { threshold: .1 });
+    /* ===== REVEAL ===== */
+    const ro = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }); }, { threshold: .1 });
     document.querySelectorAll('.r').forEach(el => ro.observe(el));
 
-    /* SKILL BARS */
-    const bro = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.querySelectorAll('.sbf').forEach(b => b.style.width = b.dataset.w + '%'); bro.unobserve(e.target); } });
-    }, { threshold: .3 });
-    const bsect = document.querySelector('.sbars'); if (bsect) bro.observe(bsect);
+    /* skill bars removed */
 
-    /* COUNTERS */
-    const cro = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.sn').forEach(el => {
-            const tgt = parseInt(el.dataset.c), dur = tgt > 100 ? 2000 : 900, step = tgt / (dur / 16);
-            let cur = 0; const iv = setInterval(() => { cur = Math.min(cur + step, tgt); el.textContent = Math.floor(cur) + (tgt <= 10 ? '+' : ''); if (cur >= tgt) clearInterval(iv); }, 16);
-          }); cro.unobserve(e.target);
-        }
-      });
-    }, { threshold: .5 });
+    /* ===== COUNTERS ===== */
+    const cro = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.querySelectorAll('.sn').forEach(el => { const tgt = parseInt(el.dataset.c), dur = tgt > 100 ? 2000 : 900, step = tgt / (dur / 16); let cur = 0; const iv = setInterval(() => { cur = Math.min(cur + step, tgt); el.textContent = Math.floor(cur) + (tgt <= 10 ? '+' : ''); if (cur >= tgt) clearInterval(iv); }, 16); }); cro.unobserve(e.target); } }); }, { threshold: .5 });
     const sb = document.querySelector('.sband'); if (sb) cro.observe(sb);
 
-    /* FILTER */
+    /* ===== FILTER ===== */
     document.querySelectorAll('.fb').forEach(btn => {
       btn.addEventListener('click', function () {
         document.querySelectorAll('.fb').forEach(b => b.classList.remove('act')); this.classList.add('act');
@@ -2203,37 +2773,21 @@
       });
     });
 
-    /* 3D TILT */
+    /* ===== 3D TILT ===== */
     document.querySelectorAll('.pc').forEach(c => {
-      c.addEventListener('mousemove', e => {
-        const r = c.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-        const rx2 = ((e.clientY - cy) / r.height) * -8, ry2 = ((e.clientX - cx) / r.width) * 8;
-        c.style.transform = `perspective(600px) rotateX(${rx2}deg) rotateY(${ry2}deg) translateY(-8px)`;
-      });
+      c.addEventListener('mousemove', e => { const r = c.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2; const rx2 = ((e.clientY - cy) / r.height) * -8, ry2 = ((e.clientX - cx) / r.width) * 8; c.style.transform = `perspective(600px) rotateX(${rx2}deg) rotateY(${ry2}deg) translateY(-8px)`; });
       c.addEventListener('mouseleave', () => { c.style.transform = ''; });
     });
 
-    /* THEME TOGGLE */
+    /* ===== THEME TOGGLE ===== */
     let dark = true;
     document.getElementById('tgl').addEventListener('click', function () {
-      dark = !dark;
-      const r = document.documentElement;
-      if (!dark) {
-        r.style.setProperty('--bg', '#f5f5f7'); r.style.setProperty('--bg2', '#ebebed');
-        r.style.setProperty('--surface', '#e4e4e6'); r.style.setProperty('--card', '#ffffff');
-        r.style.setProperty('--border', 'rgba(0,0,0,0.08)'); r.style.setProperty('--border2', 'rgba(0,0,0,0.12)');
-        r.style.setProperty('--text', '#111'); r.style.setProperty('--text2', '#555'); r.style.setProperty('--text3', '#bbb');
-        r.style.setProperty('--accent', '#00a86b'); this.textContent = '🌙';
-      } else {
-        r.style.setProperty('--bg', '#040408'); r.style.setProperty('--bg2', '#07070f');
-        r.style.setProperty('--surface', '#0d0d1a'); r.style.setProperty('--card', '#0f0f1e');
-        r.style.setProperty('--border', 'rgba(255,255,255,0.06)'); r.style.setProperty('--border2', 'rgba(255,255,255,0.1)');
-        r.style.setProperty('--text', '#f0f0f8'); r.style.setProperty('--text2', '#9898b8'); r.style.setProperty('--text3', '#4a4a6a');
-        r.style.setProperty('--accent', '#4fffb0'); this.textContent = '☀️';
-      }
+      dark = !dark; const r = document.documentElement;
+      if (!dark) { r.style.setProperty('--bg', '#f5f5f7'); r.style.setProperty('--bg2', '#ebebed'); r.style.setProperty('--surface', '#e4e4e6'); r.style.setProperty('--card', '#ffffff'); r.style.setProperty('--border', 'rgba(0,0,0,0.08)'); r.style.setProperty('--border2', 'rgba(0,0,0,0.12)'); r.style.setProperty('--text', '#111'); r.style.setProperty('--text2', '#555'); r.style.setProperty('--text3', '#bbb'); r.style.setProperty('--accent', '#00a86b'); this.textContent = '🌙'; }
+      else { r.style.setProperty('--bg', '#040408'); r.style.setProperty('--bg2', '#07070f'); r.style.setProperty('--surface', '#0d0d1a'); r.style.setProperty('--card', '#0f0f1e'); r.style.setProperty('--border', 'rgba(255,255,255,0.06)'); r.style.setProperty('--border2', 'rgba(255,255,255,0.1)'); r.style.setProperty('--text', '#f0f0f8'); r.style.setProperty('--text2', '#9898b8'); r.style.setProperty('--text3', '#4a4a6a'); r.style.setProperty('--accent', '#4fffb0'); this.textContent = '☀️'; }
     });
 
-    /* CONTACT FORM */
+    /* ===== CONTACT FORM ===== */
     document.getElementById('sub').addEventListener('click', () => {
       const n = document.getElementById('fn').value.trim(), e = document.getElementById('fe').value.trim(), m = document.getElementById('fm').value.trim();
       if (!n || !e || !m) { alert('Please fill in all required fields.'); return; }
